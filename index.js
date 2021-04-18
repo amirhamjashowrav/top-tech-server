@@ -116,6 +116,13 @@ client.connect(err => {
             })
     })
 
+    app.delete('/delete/:_id', (req, res) => {
+		serviceCollection.deleteOne({
+			_id: ObjectId(req.params._id)
+		}).then((result) => {
+			res.send(result.deletedCount > 0);
+		});
+	});
 
 });
 
